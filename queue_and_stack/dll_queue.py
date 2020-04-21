@@ -11,7 +11,7 @@ class Queue:
 
     def enqueue(self, value):
         # length += 1
-        self.size = + 1
+        self.size += 1
         # add an item to the end of the list, add_to_tail
         self.storage.add_to_tail(value)
 
