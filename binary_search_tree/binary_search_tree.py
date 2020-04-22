@@ -62,28 +62,30 @@ class BinarySearchTree:
     # Hint:  Use a recursive, depth first traversal
 
     def in_order_print(self, node):
-        pass
+        if self.left:
+            self.left.in_order_print(self.left)
+        print(node.value)
+        if self.right:
+            self.right.in_order_print(self.right)
+        print(node.value)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
         # create queue (imported)
         # add root to queue
-        root = self.value
-        Queue().enqueue(root)
+        Queue().enqueue(node)
         # while queue not empty
-        while Queue().size:
+        while Queue().size > 0:
             # node = head of queue
-            node = self.value  # <- should be head of queue
+            popped = Queue().dequeue()
             # print node / return node if search value = target
-            print(node)
+            print(popped.value)
             # add children of node to queue
-            if self.left:
-                Queue().enqueue(self.left.value)
-            if self.right:
-                Queue().enqueue(self.right.value)
-            # pop node off of queue
-            Queue().dequeue()
+            if popped.left:
+                Queue().enqueue(popped.left)
+            if popped.right:
+                Queue().enqueue(popped.right)
         return
 
     # Print the value of every node, starting with the given node,
@@ -91,25 +93,18 @@ class BinarySearchTree:
     def dft_print(self, node):
         # create stack (imported)
         # add root to stack
-        root = self.value
-        Stack().push(root)
+        Stack().push(node)
         # while stack not empty
-        # Stack().storage() -> points to DLL
-        while Stack().size:
+        while Stack().size > 0:
             # node = pop head of stack
-            node = self.value  # <- should be head of stack
+            popped = Stack().pop()
             # print node / return node if search value = target
-            print(node)
-            Stack().pop()
+            print(popped.value)
             # add children of node to stack
-            if self.left:
-                Stack().push(self.left)
-                print(self.left.value)
-                Stack().pop()
-            if self.right:
-                Stack().push(self.right)
-                print(self.right.value)
-                Stack().pop()
+            if popped.left:
+                Stack().push(popped.left)
+            if popped.right:
+                Stack().push(popped.right)
         return
 
     # STRETCH Goals -------------------------
